@@ -1,10 +1,10 @@
-import { createStore, applyMiddleware } from 'redux'
-import axios from 'axios'
-import thunk from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux';
+import axios from 'axios';
+import thunk from 'redux-thunk';
 
 const state = {
     bounties: []
-}
+};
 
 export const getBounties = () => {
     return function(dispatch) {
@@ -12,10 +12,10 @@ export const getBounties = () => {
             dispatch({
                 type: "GET_BOUNTIES",
                 data: res.data
-            })
-        })
-    }
-}
+            });
+        });
+    };
+};
 
 export const postBounty = obj => {
     return function(dispatch) {
@@ -23,13 +23,11 @@ export const postBounty = obj => {
             dispatch({
                 type: "POST_BOUNTY",
                 data: res.data
-            })
+            });
         })
-        .catch(err => {
-            console.log(err)
-        })
-    }
-}
+        .catch(err => console.log(err))
+    };
+};
 
 export const updateBounty = (obj, key) => {
     return function(dispatch) {
@@ -37,10 +35,10 @@ export const updateBounty = (obj, key) => {
             dispatch({
                 type: "UPDATE_BOUNTY",
                 data: res.data
-            })
-        })
-    }
-}
+            });
+        });
+    };
+};
 
 export const deleteBounty = id => {
     return function(dispatch){
@@ -48,35 +46,35 @@ export const deleteBounty = id => {
             dispatch({
                 type: "DELETE_BOUNTY",
                 data: res.data
-            })
-        })
-    }
-}
+            });
+        });
+    };
+};
 
 const reducer = (prevState = state, action) => {
     switch(action.type) {
         case "GET_BOUNTIES": 
             return {
                 bounties: [...action.data]
-            }
+            };
         case "POST_BOUNTY":
             return {
                 bounties: [...prevState.bounties, action.data]
-            }
+            };
         case "UPDATE_BOUNTY":
             return {
                 bounties: prevState.bounties.map(bounty => {
                     if(bounty._id === action.data._id) return action.data
-                    return bounty
+                    return bounty;
                 })
-            }
+            };
         case "DELETE_BOUNTY":
             return {
                 bounties: prevState.bounties.filter(bounty => bounty._id !== action.data.deletedBounty._id)
-            }
+            };
         default:
-            return prevState
-    }
-}
+            return prevState;
+    };
+};
 
-export default createStore(reducer, applyMiddleware(thunk))
+export default createStore(reducer, applyMiddleware(thunk));

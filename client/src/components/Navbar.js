@@ -1,5 +1,5 @@
 import React from 'react';
-import jango from '../data/jango.jpg'
+import jango from '../data/jango.jpg';
 
 const Navbar = () => {
     return (

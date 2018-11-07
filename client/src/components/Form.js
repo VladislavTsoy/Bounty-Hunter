@@ -1,6 +1,6 @@
-import React, { Component }from 'react';
-import { connect } from 'react-redux'
-import { postBounty, getBounties } from '../redux'
+import React, { PureComponent }from 'react';
+import { connect } from 'react-redux';
+import { postBounty, getBounties } from '../redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -24,9 +24,9 @@ const styles = theme => ({
   });
 
 
-class Form extends Component{
+class Form extends PureComponent{
     constructor() {
-        super()
+        super();
         this.state = {
             first: '',
             last: '',
@@ -34,18 +34,12 @@ class Form extends Component{
             bounty: 0,
             avatar: '',
             type: ''
-        }
-    }
+        };
+    };
 
     handleChange = name => e => {
         this.setState({[name]: e.target.value})
-    }
-
-    // handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     let newBounty = this.state
-    //     this.props.postBounty(newBounty)
-    // }
+    };
 
     render() {
         const { classes } = this.props
@@ -132,7 +126,7 @@ class Form extends Component{
                     <Button onClick={() => this.props.postBounty(this.state) }>Add Bounty</Button>
             </form>
         );
-    }
+    };
 };
 
 Form.propTypes = {

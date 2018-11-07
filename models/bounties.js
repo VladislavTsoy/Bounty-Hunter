@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const bountiesSchema = new mongoose.Schema({
     first: String,
@@ -7,6 +7,6 @@ const bountiesSchema = new mongoose.Schema({
     bounty: Number,
     type: String,
     avatar: String
-})
+});
 
-module.exports = mongoose.model("Bounties", bountiesSchema)
+module.exports = mongoose.model("Bounties", bountiesSchema);

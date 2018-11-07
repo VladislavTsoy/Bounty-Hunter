@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -7,24 +7,22 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import EditForm from './EditForm'
-import { connect } from 'react-redux' 
+import EditForm from './EditForm';
+import { connect } from 'react-redux' ;
 import { deleteBounty, getBounties } from '../redux'
 import Divider from '@material-ui/core/Divider';
 
-
-
-class BountyCard extends Component {
+class BountyCard extends PureComponent {
     constructor() {
-        super()
+        super();
         this.state = {
             open: false
-        }
-    }
+        };
+    };
 
     handleClick = () => {
-        this.setState(prevState => ({open: !prevState.open}))
-    }
+        this.setState(prevState => ({open: !prevState.open}));
+    };
 
     render(){
         return (
@@ -62,8 +60,8 @@ class BountyCard extends Component {
                 </Collapse>
                 <Divider light />
             </div>
-        )
-    }
+        );
+    };
 };
 
-export default connect(state => state, { deleteBounty, getBounties })(BountyCard)
+export default connect(state => state, { deleteBounty, getBounties })(BountyCard);

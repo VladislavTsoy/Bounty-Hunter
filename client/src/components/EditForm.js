@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux'
-import { updateBounty } from '../redux'
+import { connect } from 'react-redux';
+import { updateBounty } from '../redux';
 
 
 const styles = theme => ({
@@ -23,9 +23,9 @@ const styles = theme => ({
     },
   });
 
-class EditForm extends Component {
+class EditForm extends PureComponent {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             first: this.props.obj.first,
@@ -34,21 +34,20 @@ class EditForm extends Component {
             bounty: this.props.obj.bounty,
             type: this.props.obj.type,
             avatar: this.props.obj.avatar
-        }
-    }
+        };
+    };
 
     handleChange = name => e => {
-        this.setState({[name]: e.target.value})
-    }
+        this.setState({[name]: e.target.value});
+    };
 
     handleSubmit = e => {
-        this.props.handleState()
-        
-        this.props.updateBounty(this.state, this.props.obj._id)
-    }
+        this.props.handleState();
+        this.props.updateBounty(this.state, this.props.obj._id);
+    };
 
     render() {
-        const { classes } = this.props
+        const { classes } = this.props;
         return (
             <div className="edit-form-container">
                 <form className={classes.container} noValidate autoComplete="off">
@@ -136,11 +135,11 @@ class EditForm extends Component {
                 </form>
             </div>
         );
-    }
-}
+    };
+};
 
 EditForm.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default connect(state=>state, { updateBounty })(withStyles(styles)(EditForm))
+export default connect(state=>state, { updateBounty })(withStyles(styles)(EditForm));
